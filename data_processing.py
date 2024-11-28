@@ -40,10 +40,12 @@ class InputDataProcessing():
     def image_description(self, texts):
         lines = texts.split('\n')
         lines.pop(0)  # Delete the header as that's not needed
+        lines.pop(-1)  # Delete the header as that's not needed
         img_caption = {}
-        for line in lines[:-1]:
-            img, line = re.split(r'\|.*?\|', line)
-            if img[:-2] not in line:
+        for caption in lines:
+            img, line = re.split(r'\|.*?\|', caption)
+            # img, line = caption.split('|')
+            if img not in img_caption:
                 img_caption[img[:]] = [line]
             else:
                 img_caption[img[:]].append(line)
@@ -57,7 +59,7 @@ class InputDataProcessing():
         cleaned_image_captions = image_captions
         for img, caps in image_captions.items():
             for idx, img_caption in enumerate(caps):
-                # Remove '-' from the texts
+                # Remove '-' from the texts++
                 img_caption.replace("-"," ")
                 description = img_caption.split()
 
@@ -75,27 +77,27 @@ class InputDataProcessing():
 
                 # Convert individual texts back to string
                 img_caption = ' '.join(description)
-                cleaned_image_captions[img][idx] = img_caption
+                image_captions[img][idx] = img_caption
                 
-        return cleaned_image_captions
+        return image_captions
     
     # Separate all the unique texts and create a vocabulary list from all the caption descriptions
-    def text_vocabulary(self, caption_descriptions):
+    def text_vocabulary(self, clean_descriptions):
         # create an empty set of vocabulary
         vocabulary = set()
         
-        for key in caption_descriptions.keys():
-            [vocabulary.update(d.split()) for d in caption_descriptions[key]]
+        for key in clean_descriptions.keys():
+            [vocabulary.update(d.split()) for d in clean_descriptions[key]]
         
         return vocabulary
     
     # Save image caption descriptions in a file 
-    def save_descriptions(self, caption_descriptions, filename):
+    def save_descriptions(self, clean_descriptions, filename):
         lines = list()
-        for key, desc_list in caption_descriptions.items():
+        for key, desc_list in clean_descriptions.items():
             for desc in desc_list:
                 lines.append(key + '\t' + desc )
         data = "\n".join(lines)
-        file = open(filename, "w")
+        file = open(filename, 'w')
         file.write(data)
         file.close()

@@ -42,4 +42,5 @@ class ExtractFeatures():
 
     # Load feature model 
     def load_feature_model(self, feature_model_name):
-        return load(feature_model_name)
+        with open(feature_model_name, 'rb') as file:
+            return load(file)

@@ -13,13 +13,12 @@ class LoadTrainDataset():
     def load_images(self, filename):
         data = self.DataProcessing.load_data(filename)
         self.images = data.split('\n')[:-1]
-        return self.images
     
     # Load Cleaned Descriptions
     def load_clean_descriptions(self, filename): 
-        file = self.DataProcessing.load_data(filename)
+        data = self.DataProcessing.load_data(filename)
         descriptions = {}
-        for line in file.split('\n'):
+        for line in data.split('\n'):
             texts = line.split()
             if len(texts) < 1 :
                 continue
@@ -29,10 +28,13 @@ class LoadTrainDataset():
                     descriptions[image] = []
                 desc = '<start> ' + " ".join(image_caption) + ' <end>'
                 descriptions[image].append(desc)
+
         return descriptions
     
     # Load features from the features.pkl file and selecting only needed features
-    def load_features(self, images):
-        all_features = load(open("features.pkl","rb"))
-        features = {idx:all_features[idx] for idx in images}
+    def load_features(self, feature_model_name):
+        with open(feature_model_name, 'rb') as file:
+            all_features = load(file)
+        features = {idx:all_features[idx] for idx in self.images}
+
         return features
