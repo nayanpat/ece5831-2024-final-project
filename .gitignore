@@ -22,7 +22,12 @@ test.*
 *.mp4
 
 # Ignoring tensorflow models
-# *.h5
+*.h5
+*.keras
+
+# Ignoring pickle files
+*.p
+*.pkl
 
 # Ignoring the .txt files
 # *.txt

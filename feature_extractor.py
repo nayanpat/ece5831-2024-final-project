@@ -16,27 +16,26 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 class ExtractFeatures():
 
     # class Init function
-    def __init__(self, feature_extraction_model):
+    def __init__(self, feature_extraction_algo_name):
         self.model = None
-        self.feature_extraction_model = feature_extraction_model
+        self.feature_extraction_algo_name = feature_extraction_algo_name
     
     def init_model(self):
 
-        try: 
-            if self.feature_extraction_model == 'Xception':
-                model = Xception(include_top=False, pooling='avg')
-            if self.feature_extraction_model == 'VGG16':
-                model = VGG16()
-                # Restructuring the model to remove the last classification layer, this will give us access to the output features of the model
-                model = Model(inputs=model.inputs, outputs=model.layers[-2].output) 
-        except:
-            print("ERROR:  Wrong Feature Extraction Model Name Entered.")
+        if self.feature_extraction_algo_name == 'Xception':
+            model = Xception(include_top=False, pooling='avg')
+        elif self.feature_extraction_algo_name == 'VGG16':
+            model = VGG16()
+            # Restructuring the model to remove the last classification layer, this will give us access to the output features of the model
+            model = Model(inputs=model.inputs, outputs=model.layers[-2].output) 
+        else:
+            print("ERROR:  Wrong Feature Extraction Model Name Entered.")           
 
         self.model = model
 
     def extract_features(self, image_file_path):
         # Initialize an empty dictionary to store image features
-        image_features = {}
+        image_features = dict()
         
         # Loop through each image in the directory
         for img_name in tqdm(os.listdir(image_file_path)):
@@ -49,9 +48,9 @@ class ExtractFeatures():
             image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
 
             # Pre-process the input images
-            if self.feature_extraction_model == 'Xception':
+            if self.feature_extraction_algo_name == 'Xception':
                 image = tf.keras.applications.xception.preprocess_input(image)
-            if self.feature_extraction_model == 'VGG16':
+            if self.feature_extraction_algo_name == 'VGG16':
                 image = tf.keras.applications.vgg16.preprocess_input(image)
             # Preprocess the image for ResNet50
             
@@ -62,7 +61,7 @@ class ExtractFeatures():
             # Store the extracted feature in the dictionary with the image ID as the key
             image_features[image_id] = image_feature
 
-        return image_feature
+        return image_features
     
     # Save image features to a pickle file
     def save_features(self, image_feature, image_feature_file):
