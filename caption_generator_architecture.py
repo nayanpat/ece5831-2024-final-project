@@ -34,11 +34,11 @@ PUBLIC FUNCTIONS:
 class ModelArchitectureAndTraining():
 
     # Class init function
-    def __init__(self, train_data, validation_data, image_to_captions_mapping, loaded_features,
+    def __init__(self, train_data, test_data, image_to_captions_mapping, loaded_features,
                  tokenizer, max_caption_length, vocab_size, epochs=70, batch_size=32, learning_rate=0.001):
 
         self.train_data = train_data
-        self.validation_data = validation_data
+        self.validation_data = test_data
         self.image_to_captions_mapping = image_to_captions_mapping
         self.loaded_features = loaded_features
         self.tokenizer = tokenizer
@@ -69,9 +69,8 @@ class ModelArchitectureAndTraining():
         fe2 = BatchNormalization()(fe1)
         fe3 = Dense(256, activation='relu')(fe2)
 
-        if feature_extraction_algo_name == 'VGG16':
-            fe2_projected = RepeatVector(self.max_caption_length)(fe3)
-            fe2_projected = Bidirectional(LSTM(256, return_sequences=True))(fe2_projected)
+        fe2_projected = RepeatVector(self.max_caption_length)(fe3)
+        fe2_projected = Bidirectional(LSTM(256, return_sequences=True))(fe2_projected)
 
         # Sequence feature layers
         inputs2 = Input(shape=(self.max_caption_length,))
@@ -79,35 +78,28 @@ class ModelArchitectureAndTraining():
         se2 = Dropout(0.5)(se1)
         se3 = BatchNormalization()(se2)
      
-        if feature_extraction_algo_name == 'VGG16':
-            se4 = Bidirectional(LSTM(256, unroll=True, return_sequences=True))(se3)
-            # Apply attention mechanism using Dot product
-            attention = Dot(axes=[2, 2])([fe2_projected, se4])  # Calculate attention scores
-
-            # Softmax attention scores
-            attention_scores = Activation('softmax')(attention)
-
-            attention_contex_input = [attention_scores, se4]
-
-            Einsum_Obj = EinSum()
         
-            # Apply attention scores to sequence embeddings
-            attention_context = Lambda(Einsum_Obj, output_shape=(None, 512))(attention_contex_input)
-            # attention_context = Lambda(self.einsum_layer([attention_scores, se4]), output_shape=(None, 512), name="lambda_layer")([attention_scores, se4])
+        se4 = Bidirectional(LSTM(256, unroll=True, return_sequences=True))(se3)
+        # Apply attention mechanism using Dot product
+        attention = Dot(axes=[2, 2])([fe2_projected, se4])  # Calculate attention scores
 
-            # Sum the attended sequence embeddings along the time axis
-            # context_vector = tf.reduce_sum(attention_context, axis=1)
-            ReduceSum_Obj = ReduceSum()
-            context_vector = ReduceSum_Obj(attention_context)
+        # Softmax attention scores
+        attention_scores = Activation('softmax')(attention)
 
-            # Decoder model
-            decoder_input = concatenate([context_vector, fe3], axis=-1)
+        attention_contex_input = [attention_scores, se4]
 
-        if feature_extraction_algo_name == 'Xception':
-            se3 = Masking(mask_value=0)(se3)
-            se4 = LSTM(256)(se3)
-            # Decoder model
-            decoder_input = add([fe3, se4])
+        Einsum_Obj = EinSum()
+    
+        # Apply attention scores to sequence embeddings
+        attention_context = Lambda(Einsum_Obj, output_shape=(None, 512))(attention_contex_input)
+
+        # Sum the attended sequence embeddings along the time axis
+        # context_vector = tf.reduce_sum(attention_context, axis=1)
+        ReduceSum_Obj = ReduceSum()
+        context_vector = ReduceSum_Obj(attention_context)
+
+        # Decoder model
+        decoder_input = concatenate([context_vector, fe3], axis=-1)
 
         decoder1 = Dense(256, activation='relu')(decoder_input)
         outputs = Dense(self.vocab_size, activation='softmax')(decoder1)

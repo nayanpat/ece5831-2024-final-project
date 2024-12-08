@@ -14,13 +14,11 @@ class ModelDataGenerator():
         # Creat a List of Image IDs
         image_ids = list(image_to_captions_mapping.keys())
         # Split into Training and Test Sets
-        split = int(len(image_ids) * 0.70)
+        split = int(len(image_ids) * 0.90)
         train_data = image_ids[:split]
-        remainder_split = int((len(image_ids) - split) * 0.67)
-        validation_data = image_ids[split:split+remainder_split]
-        test_data = image_ids[split+remainder_split:]
+        test_data = image_ids[split:]
 
-        return train_data, validation_data, test_data
+        return train_data, test_data
 
     # Data generator function
     def data_generator(self, data_keys, image_to_captions_mapping, features, tokenizer, max_caption_length, vocab_size, batch_size):
