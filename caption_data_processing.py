@@ -50,6 +50,7 @@ class CaptionDataProcessing():
     
     # Function for processing the captions
     def clean_data(self, image_to_captions_mapping):
+        image_to_captions_mapping_table = {}
         for key, captions in image_to_captions_mapping.items():
             for idx in range(len(captions)):
                 # Take one caption at a time
@@ -60,12 +61,12 @@ class CaptionDataProcessing():
                 # Remove non-alphabetical characters
                 caption = ''.join(char for char in caption if char.isalpha() or char.isspace())
                 # Remove extra spaces
-                caption = caption.replace('\s+', ' ')
+                caption = caption.replace(r'\s+', ' ')
                 # Add unique start and end tokens to the caption
                 caption = '<start> ' + ' '.join([word for word in caption.split() if len(word) > 1]) + ' <end>'
                 captions[idx] = caption
-
-        return captions
+            image_to_captions_mapping_table[key] = captions
+        return image_to_captions_mapping_table
     
     # Function to create tokenizer from all the caption texts
     def tokenize_caption(self, all_captions):

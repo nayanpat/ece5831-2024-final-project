@@ -63,7 +63,7 @@ class ModelArchitectureAndTraining():
         except:
             print('ERROR: Wrong Feature Extraction Model Name Entered.')              
 
-        # Encoder model
+        # Encoder layers
         inputs1 = Input(shape=(input_shape,))
         fe1 = Dropout(0.5)(inputs1)
         fe2 = BatchNormalization()(fe1)
@@ -77,8 +77,7 @@ class ModelArchitectureAndTraining():
         se1 = Embedding(self.vocab_size, 256, mask_zero=True)(inputs2)
         se2 = Dropout(0.5)(se1)
         se3 = BatchNormalization()(se2)
-     
-        
+             
         se4 = Bidirectional(LSTM(256, unroll=True, return_sequences=True))(se3)
         # Apply attention mechanism using Dot product
         attention = Dot(axes=[2, 2])([fe2_projected, se4])  # Calculate attention scores

@@ -44,6 +44,5 @@ class ModelPrediction():
             # Stop iif the end sequence tag is encountered
             if predicted_word == 'end':
                 break           
-
-        return caption
-    
+        captions = caption[5:-4]
+        return captions
