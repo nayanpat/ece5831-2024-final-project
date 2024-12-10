@@ -30,9 +30,9 @@ The project has several code files and massive dataset that includes images, tex
     3) models - It has all the generated model which can be used to make prediction.  Keras load_model() function is used to load the model object.
 3. Now, you are ready to deploy the script that is used to test your image for generating caption.  For doing that, run following commands from the terminal:
 
-"conda activate ece5831-2024"
-"python caption_generator.py xyz"  
-The xyz here is the command line argument for the name of the feature extraction algorithm that you want to try out.  For VGG16, type VGG16 and for Xception, type Xception.
+"conda activate ece5831-2024"  
+"python caption_generator.py xyz"    
+The xyz here is the command line argument for the name of the feature extraction algorithm that you want to try out.  For VGG16, type VGG16 and for Xception, type Xception.  
 4. The above command will lead to a launching of a GUI that looks like following:
 
 ![alt text](image.png)
