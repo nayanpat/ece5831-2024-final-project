@@ -8,6 +8,7 @@ from model_predicton import ModelPrediction
 import os, argparse
 from pickle import load
 from tensorflow.keras.models import load_model
+import matplotlib.pyplot as plt
 
 class CaptionGeneratorGUI():
 
@@ -40,6 +41,8 @@ class CaptionGeneratorGUI():
 
         basewidth = 300
         img = Image.open(image_data)
+        plt.imshow(img)
+        plt.show()
         # wpercent = (basewidth / float(img.size[0]))
         # hsize = int((float(img.size[1]) * float(wpercent)))
         # img = img.resize((basewidth, hsize), Image.Resampling.LANCZOS)
@@ -78,6 +81,8 @@ class CaptionGeneratorGUI():
         caption = self.ModelPrediction_Obj.predict_caption(self.features[image_id], tokenizer, max_caption_length)
         self.text_label = tk.Label(self.frame, text="Caption: " + caption, font=("Helvetica", 12))
         self.text_label.pack()
+
+        print(f'Caption: {caption}')
     
         return caption
 
@@ -130,6 +135,7 @@ if __name__=='__main__':
  
     # Open the initial image
     image = Image.open(os.path.join(os.getcwd(), 'Utility Files', 'Plain_Background.jpg'))
+        
     photo = ImageTk.PhotoImage(image)
 
     # Display the initial image
@@ -143,7 +149,7 @@ if __name__=='__main__':
     text_label.pack()
 
     file_lable = tk.Label(root)
-    file_lable.config(text='F')
+    file_lable.config(text='')
     file_lable.text = ''
     file_lable.pack() 
 

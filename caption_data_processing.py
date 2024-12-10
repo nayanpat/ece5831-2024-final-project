@@ -42,7 +42,7 @@ class CaptionDataProcessing():
             # Remove extension from image ID
             image_id = image_id.split('.')[0]
             # Convert captions list to string
-            caption = " ".join(captions)
+            caption = ' '.join(captions)
             # Store the caption using defaultdict
             image_to_captions_mapping[image_id].append(caption)    
 
