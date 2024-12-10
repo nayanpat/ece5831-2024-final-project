@@ -1,10 +1,15 @@
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
+class_help = '''******************** Help on the Class ModelPrediction() *************************
+CLASS NAME: ModelPrediction()  
+PURPOSE: - This class is for predicting caption of an image
+********************************* End of Help  ************************************\n'''
 class ModelPrediction():
 
     # class Init function
     def __init__(self, model):
+        print(class_help)
         self.model = model
  
     # A untility function for getting a word with an index

@@ -2,12 +2,16 @@ from tensorflow.keras.utils import to_categorical
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
+class_help = '''******************** Help on the Class ModelDataGenerator() *************************
+CLASS NAME: ModelDataGenerator()  
+PURPOSE: - This class is for generating training and validation data during model training
+********************************* End of Help  ************************************\n'''
 class ModelDataGenerator():
 
     # class Init function
     def __init__(self):
-        pass
-
+        print(class_help)
+        
     # Creating a list of image IDs
     def create_model_dataset(self, image_to_captions_mapping):
 

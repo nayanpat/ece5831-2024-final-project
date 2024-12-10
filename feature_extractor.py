@@ -13,10 +13,15 @@ tqdm().pandas()
 from pickle import dump, load
 from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
+class_help = '''******************** Help on the Class ModelDataExtractFeaturesGenerator() *************************
+CLASS NAME: ExtractFeatures()  
+PURPOSE: - This class is for extracting features from all the flickr8k images
+********************************* End of Help  ************************************\n'''
 class ExtractFeatures():
 
     # class Init function
     def __init__(self, feature_extraction_algo_name):
+        print(class_help)
         self.model = None
         self.feature_extraction_algo_name = feature_extraction_algo_name
     

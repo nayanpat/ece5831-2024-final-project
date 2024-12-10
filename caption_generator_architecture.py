@@ -14,21 +14,7 @@ from math import ceil
 
 class_help = '''******************** Help on the Class ModelArchitectureAndTraining() *************************
 CLASS NAME: ModelArchitectureAndTraining()  
-PURPOSE: - This class is to perform the input image and caption text data processing
-INPUT PARAMETERS:  This class needs following input parameters when instantiating
-                   1)  batch_size - Training batch size
-                   2)  epochs -  Number of epochs
-MEMBER FUNCTIONS:  
-1) __init__():  This is for class initization
-2) _load_data():  This is for opening the caption text file and reading texts from it
-PUBLIC FUNCTIONS:
-1) image_description(): This function reads the texts from caption text file and 
-                        create dictionary of image file names and descriptions associated with them  
-2) clean_data():  This function cleans text data - convert all text to lower case, remove punctuation, 
-                  remove single text
-3) text_vocabulary(): This function separates all the unique texts and create a vocabulary list from 
-                      all the caption descriptions
-4) save_descriptions():  This function saves image caption descriptions in a file 
+PURPOSE: - This class is to create model architecture and train, save and load model
 ********************************* End of Help  ************************************\n'''
 
 class ModelArchitectureAndTraining():
@@ -37,6 +23,7 @@ class ModelArchitectureAndTraining():
     def __init__(self, train_data, test_data, image_to_captions_mapping, loaded_features,
                  tokenizer, max_caption_length, vocab_size, epochs=70, batch_size=32, learning_rate=0.001):
 
+        print(class_help)
         self.train_data = train_data
         self.validation_data = test_data
         self.image_to_captions_mapping = image_to_captions_mapping

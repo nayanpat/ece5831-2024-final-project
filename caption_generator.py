@@ -10,6 +10,10 @@ from pickle import load
 from tensorflow.keras.models import load_model
 import matplotlib.pyplot as plt
 
+class_help = '''******************** Help on the Class CaptionGeneratorGUI() *************************
+CLASS NAME: CaptionGeneratorGUI()  
+PURPOSE: - This class is for the GUI to select and display image alongwith the caption
+********************************* End of Help  ************************************\n'''
 class CaptionGeneratorGUI():
 
     # class Init function
@@ -20,6 +24,7 @@ class CaptionGeneratorGUI():
                   image_label,
                   text_label,
                   file_lable):
+        print(class_help)
         self.caption_generator_model = caption_generator_model
         self.features = features
         self.feature_extraction_algo_name = feature_extraction_algo_name
