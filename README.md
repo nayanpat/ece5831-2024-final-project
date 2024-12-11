@@ -4,8 +4,7 @@ In this project, a neural network architecture has been proposed and developed u
 
 The project has several code files and massive dataset that includes images, text file, data objects and models.  Following are the details of each of those artifacts.
 
-### Github repo https://github.com/nayanpat/ece5831-2024-final-project
-### File Structure:
+### File Structure on Github repo: https://github.com/nayanpat/ece5831-2024-final-project
 1. feature_extractor.py - This file has a class that is used to extract feature vector from the image dataset
 2. import_dataset.py - This is to import flickr8k dataset using Keras library 
 3. caption_data_processing.py - This has a class to process caption data
@@ -15,14 +14,19 @@ The project has several code files and massive dataset that includes images, tex
 7. caption_generator.py - This is a script that is used to select and display an image alongwith its caption
 8. final-project.ipynb - This IPython notebook is to show how to run the project and it hs executed cells with all required class
 9. Plain_Background.jpg - This image file is needed for the GUI
-10. image.png is needed for the README.md file to display the inserted screenshot of the GUI
+10. image.png - is needed for the README.md file to display the inserted screenshot of the GUI
+11. pop_up1.png - is needed for the README.md file to display the inserted screenshot of the GUI
+12. pop_up2.png - is needed for the README.md file to display the inserted screenshot of the GUI
+13. README.md - The file containing the details about the project and other files in github, google and youtube
 
-### Link to other project artifacts
-##### dataset - https://drive.google.com/file/d/1uy-U1Dbr01SsqyEyqvIvk_vB-KcB3_tJ/view?usp=drive_link
-##### Presentation - https://docs.google.com/presentation/d/1MhNExQIUH_PRmOCTh5AUynyTn9ReAVNu/edit?usp=drive_link&ouid=115485934865010381115&rtpof=true&sd=true
-##### Presentation Video - https://youtu.be/OfCuIIHYjoQ
-##### Report - https://drive.google.com/file/d/1AwVGq0DuwWk_Hgu_2LXfhWfUJqee-bcT/view?usp=drive_link
-##### Demo video - https://youtu.be/SMtimpTQ2TM
+### File Structure on Google Drive:
+1. ##### dataset - https://drive.google.com/file/d/1uy-U1Dbr01SsqyEyqvIvk_vB-KcB3_tJ/view?usp=drive_link
+2. ##### Presentation - https://docs.google.com/presentation/d/1MhNExQIUH_PRmOCTh5AUynyTn9ReAVNu/edit?usp=drive_link&ouid=115485934865010381115&rtpof=true&sd=true
+3. ##### Report - https://drive.google.com/file/d/1AwVGq0DuwWk_Hgu_2LXfhWfUJqee-bcT/view?usp=drive_link
+
+### youtube Channel Videos:
+1. ##### Presentation Video - https://youtu.be/OfCuIIHYjoQ
+2. ##### Demo video - https://youtu.be/SMtimpTQ2TM
 
 ### User's Manual
 1. Download the dataset.zip file using the link above.  
