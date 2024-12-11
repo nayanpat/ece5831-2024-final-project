@@ -14,6 +14,8 @@ The project has several code files and massive dataset that includes images, tex
 6. model_prediction.py -  This is to do prediction using generated model
 7. caption_generator.py - This is a script that is used to select and display an image alongwith its caption
 8. final-project.ipynb - This IPython notebook is to show how to run the project and it hs executed cells with all required class
+9. Plain_Background.jpg - This image file is needed for the GUI
+10. image.png is needed for the README.md file to display the inserted screenshot of the GUI
 
 ### Link to other project artifacts
 ##### dataset - https://drive.google.com/file/d/1uy-U1Dbr01SsqyEyqvIvk_vB-KcB3_tJ/view?usp=drive_link
@@ -38,4 +40,10 @@ The xyz here is the command line argument for the name of the feature extraction
 ![alt text](image.png)
 
 5. Click on the "Choose Image" button that opens a pop up window which allows you to select an image from the image database.  
-6.  Once selected the image file, click on "Classify Image" button that pops up the image on a separate window.  Close that window and click on the "Classify Image" button again that will run the prediction function in the backend and returns the caption that's displayed on the main GUI window.
+6.  Once selected the image file, click on "Classify Image" button that pops up the image on a separate window.  
+
+![alt text](pop_up1.png)
+
+7. Close that window and click on the "Classify Image" button again that will run the prediction function in the backend and returns the caption that's displayed on the main GUI window.
+
+![alt text](pop_up2.png)
