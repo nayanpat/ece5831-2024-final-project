@@ -1,7 +1,17 @@
 # Project Title: Image Caption Generator Using CNN and LSTM
 ## Introduction
-In this project, a neural network architecture has been proposed and developed using convolutional neural networks (CNN) and long short-term memory (LSTM) layers.  A step by step guide has been provided in this report on how the Image Caption Generator model has been developed and what performance measures were observed.
+Welcome to the Image Caption Generator project! This application combines the power of Convolutional Neural Networks (CNNs) and Long Short-Term Memory (LSTM) networks to automatically generate captions for images. The goal of this project is to build a model that can understand the content of an image and generate a meaningful, human-readable description based on its visual features.
 
+In this repository, you'll find the implementation of an image captioning model that uses CNN for extracting visual features from images and LSTM for generating sequential text descriptions. The CNN architecture extracts key features of the image, while the LSTM network generates a natural language caption that accurately describes the image content.
+
+This project demonstrates the synergy between computer vision and natural language processing, and can be applied in various fields like accessibility tools for the visually impaired, automatic image tagging, and content generation for media and social platforms.
+
+Key Features:
+1. ##### CNN for Feature Extraction: Uses pre-trained models like VGG16 and Xception to extract high-level visual features from images.
+2. ##### LSTM for Caption Generation: Generates natural language descriptions by using LSTM networks, which capture the context and structure of language.
+3. ##### Reusable Model: Allows flexibility to experiment with different architectures, datasets, and training configurations.
+
+Feel free to explore the code, contribute, and enhance this project further! For more details on how to set up and use the model, check the installation and usage instructions below.
 The project has several code files and massive dataset that includes images, text file, data objects and models.  Following are the details of each of those artifacts.
 
 ### File Structure on Github repo: https://github.com/nayanpat/ece5831-2024-final-project
@@ -36,9 +46,9 @@ The project has several code files and massive dataset that includes images, tex
     3) models - It has all the generated model which can be used to make prediction.  Keras load_model() function is used to load the model object.
 3. Now, you are ready to deploy the script that is used to test your image for generating caption.  For doing that, run following commands from the terminal:
 
-"conda activate ece5831-2024"  
-"python caption_generator.py xyz"    
-The xyz here is the command line argument for the name of the feature extraction algorithm that you want to try out.  For VGG16, type VGG16 and for Xception, type Xception.  
+*conda activate ece5831-2024* -  This is to activate the conda environment
+*python caption_generator.py xyz*  -  This is to launch the caption generator script  
+The xyz here is the command line argument for the name of the feature extraction algorithm that you want to try out.  For VGG16, type *VGG16* and for Xception, type *Xception*.  
 4. The above command will lead to a launching of a GUI that looks like following:
 
 ![alt text](image.png)
@@ -51,3 +61,4 @@ The xyz here is the command line argument for the name of the feature extraction
 7. Close that window and click on the "Classify Image" button again that will run the prediction function in the backend and returns the caption that's displayed on the main GUI window.
 
 ![alt text](pop_up2.png)
+8.  You can modify the code in the "caption_generator.py" file and add a different model (.keras file) as desired.
