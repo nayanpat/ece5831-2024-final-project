@@ -9,16 +9,16 @@ This project demonstrates the synergy between computer vision and natural langua
 Key Features:
 1. ##### CNN for Feature Extraction: Uses pre-trained models like VGG16 and Xception to extract high-level visual features from images.
 2. ##### LSTM for Caption Generation: Generates natural language descriptions by using LSTM networks, which capture the context and structure of language.
-3. ##### Reusable Model: Allows flexibility to experiment with different architectures, datasets, and training configurations.
+3. ##### Graphical User Interface (GUI): Allows flexibility to choose an image from the large dataset and displays the captions alongside of the image.
 
 Feel free to explore the code, contribute, and enhance this project further! For more details on how to set up and use the model, check the installation and usage instructions below.
 The project has several code files and massive dataset that includes images, text file, data objects and models.  Following are the details of each of those artifacts.
 
 ### File Structure on Github repo: https://github.com/nayanpat/ece5831-2024-final-project
-1. feature_extractor.py - This file has a class that is used to extract feature vector from the image dataset
-2. import_dataset.py - This is to import flickr8k dataset using Keras library 
-3. caption_data_processing.py - This has a class to process caption data
-4. data_generator.py - This is to generate training and validation dataset and generator for fit() function
+1. import_dataset.py - This is to import flickr8k dataset using Keras library
+2. feature_extractor.py - This file has a class that is used to extract feature vector from the image dataset
+3. caption_data_processing.py - This has a class to process caption data (from the flickr8k dataset)
+4. data_generator.py - This is to split and generate training and validation dataset and generator for fit() function
 5. caption_generator_architecture.py - This has a class to define the model architecture and function to train, save and load model
 6. model_prediction.py -  This is to do prediction using generated model
 7. caption_generator.py - This is a script that is used to select and display an image alongwith its caption
@@ -58,7 +58,7 @@ The xyz here is the command line argument for the name of the feature extraction
 
 ![alt text](pop_up1.png)
 
-7. Close that window and click on the "Classify Image" button again that will run the prediction function in the backend and returns the caption that's displayed on the main GUI window.
+7. Close that window and click on the "Classify Image" button again that will run the prediction function in the backend and returns the caption that's displayed on the main GUI window.   
 
-![alt text](pop_up2.png)
+![alt text](pop_up2.png)   
 8.  You can modify the code in the "caption_generator.py" file and add a different model (.keras file) as desired.
